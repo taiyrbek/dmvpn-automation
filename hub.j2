@@ -1,0 +1,87 @@
+hostname {{ hostname }}
+!
+crypto ikev2 proposal DMVPN-PROP
+ encryption aes-cbc-128
+ integrity md5
+ group 14
+!
+!
+crypto ikev2 policy DMVPN-POL
+ match address local 0.0.0.0
+ proposal DMVPN-PROP
+!
+!
+crypto ikev2 keyring DMVPN-KEYRING
+ peer ANY
+  address 0.0.0.0 0.0.0.0
+  pre-shared-key {{ global.ikev2_key }}
+ !
+!
+!
+crypto ikev2 profile DMVPN-PROF
+ match identity remote any
+ authentication remote pre-share
+ authentication local pre-share
+ keyring local DMVPN-KEYRING
+ dpd 10 2 periodic
+
+!
+!
+crypto ipsec transform-set TS-LITE esp-aes 128 esp-md5-hmac
+ mode tunnel
+!
+!
+crypto ipsec profile DMVPN-IPSEC
+ set transform-set TS-LITE
+ set ikev2-profile DMVPN-PROF
+!
+!
+{% for intf in interface %}
+interface {{intf.name}}
+ description link_to_ISP
+ ip address {{intf.ip}} {{intf.mask}}
+ no shutdown
+{% endfor %}
+!
+{% for tun in tunnels %}
+interface tunnel {{tun.id}}
+ description DMVPN Cloud {{tun.id}}
+ ip address {{tun.ip}} {{tun.mask}}
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication CISCO
+ ip nhrp network-id {{tun.nhrp_network_id}}
+ ip nhrp redirect
+ ip nhrp map multicast dynamic
+ ip tcp adjust-mss 1360
+ ip ospf network point-to-multipoint
+ ip ospf mtu-ignore
+ ip ospf hello-interval 30
+ ip ospf dead-interval 120
+ {% if tun.ip_ospf_cost is defined %}
+ ip ospf cost {{tun.ip_ospf_cost}}
+ {% endif %}
+ ip ospf {{global.ospf_proc}} area {{global.ospf_area}}
+ if-state nhrp
+ tunnel source {{tun.tunnel_source}}
+ tunnel mode gre multipoint
+ tunnel key {{tun.tunnel_key}}
+ tunnel path-mtu-discovery
+ tunnel protection ipsec profile DMVPN-IPSEC shared
+!
+{% endfor %}
+!
+{% if loopback0 is defined %}
+interface loopback0
+ ip address {{loopback0}} {{mask}}
+  ip ospf {{global.ospf_proc}} area {{global.ospf_area}}
+{% endif %}
+!
+router ospf {{global.ospf_proc}}
+ router-id {{tunnels[0].ip}}
+!
+{% for intf in interface %}
+    {% if intf.gateway_ip is defined %}
+ip route 0.0.0.0 0.0.0.0 {{intf.gateway_ip}} {{intf.ad}}
+    {%endif%}
+{% endfor %}

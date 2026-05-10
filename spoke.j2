@@ -1,0 +1,236 @@
+hostname {{ hostname }}
+!
+{% for intf in interface %}
+  {% if intf.vrf is defined %}
+vrf definition {{intf.vrf}}
+ address-family ipv4
+ exit-address-family
+  {% endif %}
+{% endfor %}
+!
+crypto ikev2 proposal DMVPN-PROP
+ encryption aes-cbc-128
+ integrity md5
+ group 14
+!
+crypto ikev2 policy DMVPN-POL
+ match fvrf any
+ match address local 0.0.0.0
+ proposal DMVPN-PROP
+!
+crypto ikev2 keyring DMVPN-KEYRING
+ peer ANY
+  address 0.0.0.0 0.0.0.0
+  pre-shared-key {{ global.ikev2_key }}
+ !
+!
+crypto ikev2 profile DMVPN-PROF
+ match fvrf any
+ match identity remote any
+ authentication remote pre-share
+ authentication local pre-share
+ keyring local DMVPN-KEYRING
+ dpd 10 2 periodic
+
+!
+crypto ipsec transform-set TS-LITE esp-aes 128 esp-md5-hmac
+ mode tunnel
+!
+crypto ipsec profile DMVPN-IPSEC
+ set transform-set TS-LITE
+ set ikev2-profile DMVPN-PROF
+!
+{% for intf in interface %}
+interface {{intf.name}}
+ description {{intf.description}}
+ {% if intf.vrf is defined %}
+ vrf forwarding {{intf.vrf}}
+ {% endif %}
+ ip address {{intf.ip}} {{intf.mask}}
+ no shutdown
+{% endfor %}
+!
+{% for tun in tunnels %}
+interface tunnel {{tun.id}}
+ description DMVPN Cloud {{tun.id}}
+  {% if tun.tunnel_vrf is defined %}
+ tunnel vrf {{ tun.tunnel_vrf }}
+  {% endif %}
+ ip address {{tun.ip}} {{tun.mask}}
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication CISCO
+ ip nhrp network-id {{tun.nhrp_network_id}}
+ {% for h in hub %}
+    {% if h.nhrp_id == tun.nhrp_network_id %}
+ ip nhrp nhs {{h.tunnel_ip}} nbma {{h.nbma_ip}} multicast
+    {% endif %}
+ {% endfor %}
+ ip nhrp shortcut
+ ip tcp adjust-mss 1360
+ ip ospf network point-to-multipoint
+ ip ospf hello-interval 30
+ ip ospf dead-interval 120
+ ip ospf mtu-ignore
+ {% if tun.ip_ospf_cost is defined %}
+ ip ospf cost {{tun.ip_ospf_cost}}
+ {% endif %}
+ ip ospf {{global.ospf_proc}} area {{global.ospf_area}}
+ if-state nhrp
+ tunnel source {{tun.tunnel_source}}
+ tunnel mode gre multipoint
+ tunnel key {{tun.tunnel_key}}
+ tunnel protection ipsec profile DMVPN-IPSEC 
+ tunnel path-mtu-discovery
+ !
+{% endfor %}
+!
+router ospf {{global.ospf_proc}}
+ router-id {{tunnels[0].ip}}
+ {% for intf in interface %}
+    {% if intf.ospf_enabled is defined and intf.ospf_enabled == true %}
+ network {{intf.ip}} 0.0.0.0 area {{global.ospf_area}}
+    {% endif %}
+ {% endfor %}
+!
+{% for intf in interface %}
+    {% if intf.gateway_ip is defined and intf.vrf is defined %}
+ip route vrf {{intf.vrf}} 0.0.0.0 0.0.0.0 {{intf.gateway_ip}}
+    {%endif%}
+{% endfor %}
+!
+ip access-list extended ACL_TRACEROUTE
+ permit udp any any range 33434 33523
+!
+ip access-list extended OSPF_ACL
+ permit ospf any any
+!
+ip access-list extended ACL_DMVPN
+ permit udp any any eq non500-isakmp
+ permit udp any any eq isakmp
+ permit esp any any
+!
+ip access-list extended ACL_ICMP
+ permit icmp any any
+!
+class-map type inspect match-any cm_traceroute
+ match access-group name ACL_TRACEROUTE
+!
+class-map type inspect match-any cm_ospf
+ match access-group name OSPF_ACL
+!
+class-map type inspect match-any cm_dmvpn
+ match access-group name ACL_DMVPN
+!
+class-map type inspect match-any cm_icmp
+ match access-group name ACL_ICMP
+!
+class-map type inspect match-any cm_traffic
+ match protocol tcp
+ match protocol udp
+!
+policy-map type inspect pm_tunnel_to_self
+ class type inspect cm_icmp
+  inspect
+ class type inspect cm_ospf
+  pass
+class type inspect cm_traceroute
+  inspect
+ class class-default
+  drop log
+!
+policy-map type inspect pm_self_to_tunnel
+ class type inspect cm_icmp
+  inspect
+ class type inspect cm_ospf
+  pass
+ class type inspect cm_traceroute
+  inspect
+ class class-default
+  drop log
+!
+policy-map type inspect pm_inet_to_self
+ class type inspect cm_dmvpn
+  pass
+ class type inspect cm_icmp
+  inspect
+ class class-default
+  drop log
+!
+policy-map type inspect pm_self_to_inet
+ class type inspect cm_dmvpn
+  pass
+ class type inspect cm_icmp
+  inspect
+ class class-default
+  drop log
+!
+policy-map type inspect pm_lan_to_tunnel
+ class type inspect cm_icmp
+  inspect
+ class type inspect cm_traffic
+  inspect
+ class class-default
+  drop log
+!
+policy-map type inspect pm_tunnel_to_lan
+ class type inspect cm_icmp
+  inspect
+ class type inspect cm_traffic
+  inspect
+ class class-default
+  drop log
+!
+policy-map type inspect pm_lan_to_inet
+ class class-default
+  drop log
+!
+policy-map type inspect pm_inet_to_lan
+ class class-default
+  drop log
+!
+{% for intf in interface %}
+  {% if intf.vrf is defined %}
+zone security wan_{{intf.vrf}}
+  {% endif %}
+{% endfor %}
+zone security lan
+zone security tunnel
+!
+{% for intf in interface %}
+  {% if intf.vrf is defined %}
+zone-pair security zp_inet_to_self_{{intf.vrf}} source wan_{{intf.vrf}} destination self
+ service-policy type inspect pm_inet_to_self
+!
+zone-pair security zp_self_to_inet_{{intf.vrf}} source self destination wan_{{intf.vrf}}
+ service-policy type inspect pm_self_to_inet
+  {% endif %}
+{% endfor %}
+!
+zone-pair security zp_self_to_tunnel source self destination tunnel
+ service-policy type inspect pm_self_to_tunnel
+!
+zone-pair security zp_tunnel_to_self source tunnel destination self
+ service-policy type inspect pm_tunnel_to_self
+!
+zone-pair security zp_tunnel_to_lan source tunnel destination lan
+ service-policy type inspect pm_tunnel_to_lan
+!
+zone-pair security zp_lan_to_tunnel source lan destination tunnel
+ service-policy type inspect pm_lan_to_tunnel
+!
+!
+{%for zbf in interface %}
+ interface {{zbf.name}}
+  {% if zbf.vrf is defined %}
+  zone-member security wan_{{zbf.vrf}}
+  
+  {% else %}
+  zone-member security lan
+  {% endif %}
+!
+{%endfor%}
+{% for tun in tunnels %}
+ interface tunnel {{tun.id}}
+ zone-member security tunnel
+{% endfor %}
