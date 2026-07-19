@@ -20,11 +20,13 @@ Built as a network automation learning project (BSc thesis, KSTU).
 Redundancy exists at both the hub level and the transport level: losing one
 ISP or one hub doesn't take down the overlay.
 
-![DMVPN dual-hub, dual-cloud topology](topology.png)
+![DMVPN dual-hub, dual-cloud topology](img/topology.png)
 
-*Editable sources: [`topology.drawio`](topology.drawio) (open in [diagrams.net](https://app.diagrams.net)) and [`topology.svg`](topology.svg).*
-EVE-NG lab
- ['eve-ng-lab.png'](eve-ng-lab.png)
+*Editable sources: [`topology.drawio`](img/topology.drawio) (open in [diagrams.net](https://app.diagrams.net)) and [`topology.svg`](img/topology.svg).*
+
+## EVE-NG lab
+
+![EVE-NG lab topology](eve-ng-lab.png)
 
 ## Features
 
