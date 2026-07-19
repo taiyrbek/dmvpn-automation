@@ -23,6 +23,8 @@ ISP or one hub doesn't take down the overlay.
 ![DMVPN dual-hub, dual-cloud topology](topology.png)
 
 *Editable sources: [`topology.drawio`](topology.drawio) (open in [diagrams.net](https://app.diagrams.net)) and [`topology.svg`](topology.svg).*
+EVE-NG lab
+ ['eve-ng-lab.png'](eve-ng-lab.png)
 
 ## Features
 
