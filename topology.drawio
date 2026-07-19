@@ -1,0 +1,154 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="dmvpn-topology" name="DMVPN Topology">
+    <mxGraphModel dx="1213" dy="862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" value="DMVPN Phase 3 — Dual Hub Dual Cloud" vertex="1">
+          <mxGeometry height="30" width="500" x="350" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=2;fontColor=#7a6a4f;" value="Thesis project — automated corporate network deployment with Python (Netmiko + Jinja2)" vertex="1">
+          <mxGeometry height="20" width="700" x="250" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hubMainIcon" parent="1" style="sketch=0;points=[[0.5,0,0],[1,0.5,0],[0.5,1,0],[0,0.5,0]];html=1;shape=mxgraph.cisco.routers.router;fillColor=#036897;strokeColor=#ffffff;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="53" width="78" x="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="hubMainLabel" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#1a3d5c;" value="&lt;b&gt;HUB_MAIN&lt;/b&gt;&lt;br&gt;Tu100: 172.16.1.1&lt;br&gt;Tu200: 172.16.2.1&lt;br&gt;NBMA: 100.100.100.1&lt;br&gt;LAN: 192.168.100.0/24" vertex="1">
+          <mxGeometry height="70" width="150" x="204" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="hubDrIcon" parent="1" style="sketch=0;points=[[0.5,0,0],[1,0.5,0],[0.5,1,0],[0,0.5,0]];html=1;shape=mxgraph.cisco.routers.router;fillColor=#036897;strokeColor=#ffffff;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="53" width="78" x="880" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="hubDrLabel" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#1a3d5c;" value="&lt;b&gt;HUB_DR&lt;/b&gt;&lt;br&gt;Tu100: 172.16.1.2&lt;br&gt;Tu200: 172.16.2.2&lt;br&gt;NBMA: 200.200.200.1&lt;br&gt;LAN: 192.168.200.0/24" vertex="1">
+          <mxGeometry height="70" width="150" x="844" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="branchAIcon" parent="1" style="sketch=0;points=[[0.5,0,0],[1,0.5,0],[0.5,1,0],[0,0.5,0]];html=1;shape=mxgraph.cisco.routers.router;fillColor=#7A3A3A;strokeColor=#ffffff;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="53" width="78" x="240" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="branchALabel" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#1a3d5c;" value="&lt;b&gt;BRANCH_A&lt;/b&gt;&lt;br&gt;Tu100: 172.16.1.3&lt;br&gt;Tu200: 172.16.2.3&lt;br&gt;NBMA: 10.10.10.1&lt;br&gt;NBMA: 20.20.20.1&lt;br&gt;LAN: 192.168.1.0/24" vertex="1">
+          <mxGeometry height="85" width="150" x="204" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="branchCIcon" parent="1" style="sketch=0;points=[[0.5,0,0],[1,0.5,0],[0.5,1,0],[0,0.5,0]];html=1;shape=mxgraph.cisco.routers.router;fillColor=#7A3A3A;strokeColor=#ffffff;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="53" width="78" x="880" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="branchCLabel" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#1a3d5c;" value="&lt;b&gt;BRANCH_C&lt;/b&gt;&lt;br&gt;Tu100: 172.16.1.4&lt;br&gt;Tu200: 172.16.2.4&lt;br&gt;NBMA: 200.0.0.10&lt;br&gt;NBMA: 200.0.1.10&lt;br&gt;LAN: 192.168.2.0/24" vertex="1">
+          <mxGeometry height="85" width="150" x="844" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="lanHQ" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#d9a441;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;LAN HQ&lt;/b&gt;&lt;br&gt;192.168.100.0/24" vertex="1">
+          <mxGeometry height="50" width="140" x="40" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="lanDR" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#d9a441;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;LAN DR Site&lt;/b&gt;&lt;br&gt;192.168.200.0/24" vertex="1">
+          <mxGeometry height="50" width="140" x="1020" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="lanA" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#d9a441;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;LAN Branch A&lt;/b&gt;&lt;br&gt;192.168.1.0/24" vertex="1">
+          <mxGeometry height="50" width="140" x="40" y="612" as="geometry" />
+        </mxCell>
+        <mxCell id="lanC" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#d9a441;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;LAN Branch C&lt;/b&gt;&lt;br&gt;192.168.2.0/24" vertex="1">
+          <mxGeometry height="50" width="140" x="1020" y="612" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud1" parent="1" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#1f6fb4;strokeWidth=2;align=center;verticalAlign=middle;fontSize=12;fontColor=#1f4e79;" value="&lt;b&gt;DMVPN Cloud 1&lt;/b&gt;&lt;br&gt;Tunnel 100 (mGRE)&lt;br&gt;172.16.1.0/24" vertex="1">
+          <mxGeometry height="130" width="240" x="250" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud2" parent="1" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#2e8b57;strokeWidth=2;align=center;verticalAlign=middle;fontSize=12;fontColor=#1e5c37;" value="&lt;b&gt;DMVPN Cloud 2&lt;/b&gt;&lt;br&gt;Tunnel 200 (mGRE)&lt;br&gt;172.16.2.0/24" vertex="1">
+          <mxGeometry height="130" width="240" x="700" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="ispCloud" parent="1" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#888888;strokeWidth=2;dashed=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#555555;" value="&lt;b&gt;Internet / ISP&lt;/b&gt;&lt;br&gt;(physical transport)" vertex="1">
+          <mxGeometry height="110" width="200" x="500" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="legendBox" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="150" width="200" x="30" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="legendTitle" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="200" x="30" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1line" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#1f6fb4;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="42" y="325" as="sourcePoint" />
+            <mxPoint x="76" y="325" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg1txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;" value="Tunnel 100 (DMVPN Cloud 1)" vertex="1">
+          <mxGeometry height="18" width="148" x="80" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2line" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#2e8b57;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="42" y="347" as="sourcePoint" />
+            <mxPoint x="76" y="347" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg2txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;" value="Tunnel 200 (DMVPN Cloud 2)" vertex="1">
+          <mxGeometry height="18" width="148" x="80" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3line" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#888888;strokeWidth=1.5;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="42" y="369" as="sourcePoint" />
+            <mxPoint x="76" y="369" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg3txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;" value="Physical link (NBMA)" vertex="1">
+          <mxGeometry height="18" width="148" x="80" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4line" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#222222;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="42" y="391" as="sourcePoint" />
+            <mxPoint x="76" y="391" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg4txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;" value="LAN segment" vertex="1">
+          <mxGeometry height="18" width="148" x="80" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5txt" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=9;fontColor=#555555;" value="&lt;i&gt;Routing: OSPF over mGRE&lt;br&gt;Protection: IPsec (tunnel mode)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="34" width="180" x="42" y="402" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" edge="1" parent="1" source="hubMainIcon" style="endArrow=none;html=1;strokeColor=#1f6fb4;strokeWidth=2;fontSize=9;fontColor=#1f6fb4;labelBackgroundColor=#ffffff;" target="cloud1" value="Tu100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" edge="1" parent="1" source="hubDrIcon" style="endArrow=none;html=1;strokeColor=#1f6fb4;strokeWidth=2;fontSize=9;fontColor=#1f6fb4;labelBackgroundColor=#ffffff;" target="cloud1" value="Tu100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" edge="1" parent="1" source="hubMainIcon" style="endArrow=none;html=1;strokeColor=#2e8b57;strokeWidth=2;fontSize=9;fontColor=#2e8b57;labelBackgroundColor=#ffffff;" target="cloud2" value="Tu200">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" edge="1" parent="1" source="hubDrIcon" style="endArrow=none;html=1;strokeColor=#2e8b57;strokeWidth=2;fontSize=9;fontColor=#2e8b57;labelBackgroundColor=#ffffff;" target="cloud2" value="Tu200">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" edge="1" parent="1" source="branchAIcon" style="endArrow=none;html=1;strokeColor=#1f6fb4;strokeWidth=2;fontSize=9;fontColor=#1f6fb4;labelBackgroundColor=#ffffff;" target="cloud1" value="Tu100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t6" edge="1" parent="1" source="branchCIcon" style="endArrow=none;html=1;strokeColor=#1f6fb4;strokeWidth=2;fontSize=9;fontColor=#1f6fb4;labelBackgroundColor=#ffffff;" target="cloud1" value="Tu100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t7" edge="1" parent="1" source="branchAIcon" style="endArrow=none;html=1;strokeColor=#2e8b57;strokeWidth=2;fontSize=9;fontColor=#2e8b57;labelBackgroundColor=#ffffff;" target="cloud2" value="Tu200">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t8" edge="1" parent="1" source="branchCIcon" style="endArrow=none;html=1;strokeColor=#2e8b57;strokeWidth=2;fontSize=9;fontColor=#2e8b57;labelBackgroundColor=#ffffff;" target="cloud2" value="Tu200">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" edge="1" parent="1" source="hubMainIcon" style="endArrow=none;html=1;strokeColor=#999999;strokeWidth=1.5;dashed=1;" target="ispCloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" edge="1" parent="1" source="hubDrIcon" style="endArrow=none;html=1;strokeColor=#999999;strokeWidth=1.5;dashed=1;" target="ispCloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" edge="1" parent="1" source="branchAIcon" style="endArrow=none;html=1;strokeColor=#999999;strokeWidth=1.5;dashed=1;" target="ispCloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" edge="1" parent="1" source="branchCIcon" style="endArrow=none;html=1;strokeColor=#999999;strokeWidth=1.5;dashed=1;" target="ispCloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" edge="1" parent="1" source="lanHQ" style="endArrow=none;html=1;strokeColor=#222222;strokeWidth=2;" target="hubMainIcon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" edge="1" parent="1" source="lanDR" style="endArrow=none;html=1;strokeColor=#222222;strokeWidth=2;" target="hubDrIcon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" edge="1" parent="1" source="lanA" style="endArrow=none;html=1;strokeColor=#222222;strokeWidth=2;" target="branchAIcon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" edge="1" parent="1" source="lanC" style="endArrow=none;html=1;strokeColor=#222222;strokeWidth=2;" target="branchCIcon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

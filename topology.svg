@@ -1,0 +1,155 @@
+<svg viewBox="0 0 1200 850" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <symbol id="routerHub" viewBox="0 0 120 84">
+      <path d="M8,38 L8,58 A52,20 0 0 0 112,58 L112,38" fill="#036897" stroke="#ffffff" stroke-width="2"/>
+      <ellipse cx="60" cy="38" rx="52" ry="20" fill="#0a7fb5" stroke="#ffffff" stroke-width="2"/>
+      <g stroke="#ffffff" stroke-width="4" fill="#ffffff" stroke-linecap="round">
+        <line x1="30" y1="38" x2="52" y2="38"/>
+        <polygon points="52,33 62,38 52,43"/>
+        <line x1="90" y1="38" x2="68" y2="38"/>
+        <polygon points="68,33 58,38 68,43"/>
+        <line x1="60" y1="26" x2="47" y2="32"/>
+        <polygon points="44,28 40,36 50,35"/>
+        <line x1="60" y1="50" x2="73" y2="44"/>
+        <polygon points="76,48 80,40 70,41"/>
+      </g>
+    </symbol>
+    <symbol id="routerSpoke" viewBox="0 0 120 84">
+      <path d="M8,38 L8,58 A52,20 0 0 0 112,58 L112,38" fill="#7A3A3A" stroke="#ffffff" stroke-width="2"/>
+      <ellipse cx="60" cy="38" rx="52" ry="20" fill="#93504f" stroke="#ffffff" stroke-width="2"/>
+      <g stroke="#ffffff" stroke-width="4" fill="#ffffff" stroke-linecap="round">
+        <line x1="30" y1="38" x2="52" y2="38"/>
+        <polygon points="52,33 62,38 52,43"/>
+        <line x1="90" y1="38" x2="68" y2="38"/>
+        <polygon points="68,33 58,38 68,43"/>
+        <line x1="60" y1="26" x2="47" y2="32"/>
+        <polygon points="44,28 40,36 50,35"/>
+        <line x1="60" y1="50" x2="73" y2="44"/>
+        <polygon points="76,48 80,40 70,41"/>
+      </g>
+    </symbol>
+    <symbol id="cloudShape" viewBox="0 0 100 60">
+      <path d="M10,45 C0,45 0,25 15,22 C15,10 35,5 45,15 C50,5 70,5 75,18 C90,15 100,25 95,38 C100,45 90,50 85,48 C85,55 75,58 65,52 C55,58 40,58 32,52 C20,58 10,52 10,45 Z"/>
+    </symbol>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="850" fill="#ffffff"/>
+
+  <text x="600" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a1a1a">DMVPN Phase 3 — Dual Hub Dual Cloud</text>
+  <text x="600" y="56" text-anchor="middle" font-size="12" font-style="italic" fill="#7a6a4f">Thesis project — automated corporate network deployment with Python (Netmiko + Jinja2)</text>
+
+  <!-- ============ EDGES first (under nodes) ============ -->
+  <!-- Tunnel edges: hubs to clouds -->
+  <line x1="279" y1="143" x2="345" y2="330" stroke="#1f6fb4" stroke-width="2"/>
+  <line x1="279" y1="143" x2="770" y2="325" stroke="#2e8b57" stroke-width="2"/>
+  <line x1="919" y1="143" x2="430" y2="325" stroke="#1f6fb4" stroke-width="2"/>
+  <line x1="919" y1="143" x2="855" y2="330" stroke="#2e8b57" stroke-width="2"/>
+  <!-- Tunnel edges: spokes to clouds -->
+  <line x1="279" y1="612" x2="350" y2="425" stroke="#1f6fb4" stroke-width="2"/>
+  <line x1="279" y1="612" x2="765" y2="428" stroke="#2e8b57" stroke-width="2"/>
+  <line x1="919" y1="612" x2="435" y2="428" stroke="#1f6fb4" stroke-width="2"/>
+  <line x1="919" y1="612" x2="850" y2="425" stroke="#2e8b57" stroke-width="2"/>
+  <!-- Physical NBMA edges to ISP cloud (dashed) -->
+  <line x1="279" y1="143" x2="545" y2="475" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="919" y1="143" x2="655" y2="475" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="279" y1="612" x2="545" y2="540" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="919" y1="612" x2="655" y2="540" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- LAN edges -->
+  <line x1="180" y1="120" x2="240" y2="118" stroke="#222" stroke-width="2"/>
+  <line x1="1020" y1="120" x2="958" y2="118" stroke="#222" stroke-width="2"/>
+  <line x1="180" y1="637" x2="240" y2="637" stroke="#222" stroke-width="2"/>
+  <line x1="1020" y1="637" x2="958" y2="637" stroke="#222" stroke-width="2"/>
+
+  <!-- Tunnel labels with white background -->
+  <g font-size="10" font-weight="bold">
+    <rect x="288" y="220" width="38" height="14" fill="#ffffff"/><text x="307" y="231" text-anchor="middle" fill="#1f6fb4">Tu100</text>
+    <rect x="470" y="212" width="38" height="14" fill="#ffffff"/><text x="489" y="223" text-anchor="middle" fill="#2e8b57">Tu200</text>
+    <rect x="672" y="212" width="38" height="14" fill="#ffffff"/><text x="691" y="223" text-anchor="middle" fill="#1f6fb4">Tu100</text>
+    <rect x="872" y="220" width="38" height="14" fill="#ffffff"/><text x="891" y="231" text-anchor="middle" fill="#2e8b57">Tu200</text>
+    <rect x="292" y="520" width="38" height="14" fill="#ffffff"/><text x="311" y="531" text-anchor="middle" fill="#1f6fb4">Tu100</text>
+    <rect x="470" y="512" width="38" height="14" fill="#ffffff"/><text x="489" y="523" text-anchor="middle" fill="#2e8b57">Tu200</text>
+    <rect x="672" y="512" width="38" height="14" fill="#ffffff"/><text x="691" y="523" text-anchor="middle" fill="#1f6fb4">Tu100</text>
+    <rect x="868" y="520" width="38" height="14" fill="#ffffff"/><text x="887" y="531" text-anchor="middle" fill="#2e8b57">Tu200</text>
+  </g>
+
+  <!-- ============ CLOUDS ============ -->
+  <use href="#cloudShape" x="250" y="300" width="240" height="130" fill="#dae8fc" stroke="#1f6fb4" stroke-width="2.5"/>
+  <text x="370" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f4e79">DMVPN Cloud 1</text>
+  <text x="370" y="370" text-anchor="middle" font-size="11" fill="#1f4e79">Tunnel 100 (mGRE)</text>
+  <text x="370" y="386" text-anchor="middle" font-size="11" fill="#1f4e79">172.16.1.0/24</text>
+
+  <use href="#cloudShape" x="710" y="300" width="240" height="130" fill="#d5e8d4" stroke="#2e8b57" stroke-width="2.5"/>
+  <text x="830" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e5c37">DMVPN Cloud 2</text>
+  <text x="830" y="370" text-anchor="middle" font-size="11" fill="#1e5c37">Tunnel 200 (mGRE)</text>
+  <text x="830" y="386" text-anchor="middle" font-size="11" fill="#1e5c37">172.16.2.0/24</text>
+
+  <use href="#cloudShape" x="500" y="460" width="200" height="110" fill="#f5f5f5" stroke="#888" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="600" y="508" text-anchor="middle" font-size="12" font-weight="bold" fill="#555">Internet / ISP</text>
+  <text x="600" y="524" text-anchor="middle" font-size="10" fill="#777">(physical transport)</text>
+
+  <!-- ============ ROUTERS ============ -->
+  <!-- HUB_MAIN -->
+  <use href="#routerHub" x="240" y="85" width="78" height="55"/>
+  <text x="279" y="158" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a1a">HUB_MAIN</text>
+  <text x="279" y="173" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu100: 172.16.1.1</text>
+  <text x="279" y="186" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu200: 172.16.2.1</text>
+  <text x="279" y="199" text-anchor="middle" font-size="10" fill="#1a3d5c">NBMA: 100.100.100.1</text>
+  <text x="279" y="212" text-anchor="middle" font-size="10" fill="#1a3d5c">LAN: 192.168.100.0/24</text>
+
+  <!-- HUB_DR -->
+  <use href="#routerHub" x="880" y="85" width="78" height="55"/>
+  <text x="919" y="158" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a1a">HUB_DR</text>
+  <text x="919" y="173" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu100: 172.16.1.2</text>
+  <text x="919" y="186" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu200: 172.16.2.2</text>
+  <text x="919" y="199" text-anchor="middle" font-size="10" fill="#1a3d5c">NBMA: 200.200.200.1</text>
+  <text x="919" y="212" text-anchor="middle" font-size="10" fill="#1a3d5c">LAN: 192.168.200.0/24</text>
+
+  <!-- BRANCH_A -->
+  <use href="#routerSpoke" x="240" y="585" width="78" height="55"/>
+  <text x="279" y="660" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a1a">BRANCH_A</text>
+  <text x="279" y="675" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu100: 172.16.1.3</text>
+  <text x="279" y="688" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu200: 172.16.2.3</text>
+  <text x="279" y="701" text-anchor="middle" font-size="10" fill="#1a3d5c">NBMA: 10.10.10.1</text>
+  <text x="279" y="714" text-anchor="middle" font-size="10" fill="#1a3d5c">NBMA: 20.20.20.1</text>
+  <text x="279" y="727" text-anchor="middle" font-size="10" fill="#1a3d5c">LAN: 192.168.1.0/24</text>
+
+  <!-- BRANCH_C -->
+  <use href="#routerSpoke" x="880" y="585" width="78" height="55"/>
+  <text x="919" y="660" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a1a">BRANCH_C</text>
+  <text x="919" y="675" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu100: 172.16.1.4</text>
+  <text x="919" y="688" text-anchor="middle" font-size="10" fill="#1a3d5c">Tu200: 172.16.2.4</text>
+  <text x="919" y="701" text-anchor="middle" font-size="10" fill="#1a3d5c">NBMA: 200.0.0.10</text>
+  <text x="919" y="714" text-anchor="middle" font-size="10" fill="#1a3d5c">NBMA: 200.0.1.10</text>
+  <text x="919" y="727" text-anchor="middle" font-size="10" fill="#1a3d5c">LAN: 192.168.2.0/24</text>
+
+  <!-- ============ LAN BOXES ============ -->
+  <rect x="40" y="95" width="140" height="50" rx="6" fill="#fff3cd" stroke="#d9a441" stroke-width="1.5"/>
+  <text x="110" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">LAN HQ</text>
+  <text x="110" y="132" text-anchor="middle" font-size="10" fill="#555">192.168.100.0/24</text>
+
+  <rect x="1020" y="95" width="140" height="50" rx="6" fill="#fff3cd" stroke="#d9a441" stroke-width="1.5"/>
+  <text x="1090" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">LAN DR Site</text>
+  <text x="1090" y="132" text-anchor="middle" font-size="10" fill="#555">192.168.200.0/24</text>
+
+  <rect x="40" y="612" width="140" height="50" rx="6" fill="#fff3cd" stroke="#d9a441" stroke-width="1.5"/>
+  <text x="110" y="632" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">LAN Branch A</text>
+  <text x="110" y="649" text-anchor="middle" font-size="10" fill="#555">192.168.1.0/24</text>
+
+  <rect x="1020" y="612" width="140" height="50" rx="6" fill="#fff3cd" stroke="#d9a441" stroke-width="1.5"/>
+  <text x="1090" y="632" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">LAN Branch C</text>
+  <text x="1090" y="649" text-anchor="middle" font-size="10" fill="#555">192.168.2.0/24</text>
+
+  <!-- ============ LEGEND ============ -->
+  <rect x="30" y="290" width="200" height="150" fill="#ffffff" stroke="#666" stroke-width="1"/>
+  <text x="130" y="308" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">Legend</text>
+  <line x1="42" y1="325" x2="76" y2="325" stroke="#1f6fb4" stroke-width="2.5"/>
+  <text x="82" y="329" font-size="9" fill="#333">Tunnel 100 (DMVPN Cloud 1)</text>
+  <line x1="42" y1="347" x2="76" y2="347" stroke="#2e8b57" stroke-width="2.5"/>
+  <text x="82" y="351" font-size="9" fill="#333">Tunnel 200 (DMVPN Cloud 2)</text>
+  <line x1="42" y1="369" x2="76" y2="369" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="82" y="373" font-size="9" fill="#333">Physical link (NBMA)</text>
+  <line x1="42" y1="391" x2="76" y2="391" stroke="#222" stroke-width="2"/>
+  <text x="82" y="395" font-size="9" fill="#333">LAN segment</text>
+  <text x="42" y="415" font-size="9" font-style="italic" fill="#555">Routing: OSPF over mGRE</text>
+  <text x="42" y="430" font-size="9" font-style="italic" fill="#555">Protection: IPsec (tunnel mode)</text>
+</svg>
