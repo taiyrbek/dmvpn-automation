@@ -175,6 +175,12 @@ one ISP down) doesn't affect the other cloud's state machine.
 - **Health check is string-matching**, not structured parsing (no
   TextFSM) — good enough for a quick human-readable report, not for
   comparing against intended state.
+- **Phase 3 shortcut degrades on single-ISP failure** — spoke-to-spoke 
+  NHRP shortcuts work while both transports are up, but NHRP resolution 
+  cannot cross between the two DMVPN clouds. If one ISP link fails, 
+  spoke-to-spoke traffic falls back through the hub (Phase 1-like 
+  behavior). Observed in the EVE-NG lab during failover testing. 
+  A BGP-based design would handle this multi-homed scenario better.
 
 ## Disclaimer
 
