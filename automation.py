@@ -19,7 +19,7 @@ def verify_net_health(device_ssh, router):
             ssh.enable()
             ike = ssh.send_command('show crypto ikev2 sa | i READY')
             ipsec = ssh.send_command('show crypto ipsec sa | i Status')
-            
+
             ike_count = ike.count("READY")
             if ike_count > 0 :
                 print(f"Сессии установлены {ike_count} шт.")
@@ -119,7 +119,7 @@ for r in net_device:
             ssh.enable()
             output = ssh.send_config_set(finall_text.splitlines())
             print(output)
-            print(f"Конфигурация приминилась успешно !")
+            print(f"Конфигурация применилась успешно !")
             print(f"смотрим состояние туннелей ")
             dmvpn_status = ssh.send_command("show dmvpn | i up")
             if dmvpn_status:
@@ -132,7 +132,7 @@ for r in net_device:
     except Exception as e:
         print(f'есть проблема, ошибка  c роутером {r["hostname"]} {e}')  
 
-print(f"Финанльная проверка сети ...")
+print(f"Финальная проверка сети ...")
 wait_time = 40
 for i in range(wait_time, 0, -1):
     print(f"\rосталось столько секунд {i:02d} ... ", end="", flush=True)
