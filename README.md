@@ -20,6 +20,10 @@ Built as a network automation learning project (BSc thesis, KSTU).
 Redundancy exists at both the hub level and the transport level: losing one
 ISP or one hub doesn't take down the overlay.
 
+![DMVPN dual-hub, dual-cloud topology](topology.png)
+
+*Editable sources: [`topology.drawio`](topology.drawio) (open in [diagrams.net](https://app.diagrams.net)) and [`topology.svg`](topology.svg).*
+
 ## Features
 
 - Config generation via Jinja2 (`hub.j2`, `spoke.j2`) driven entirely by
@@ -43,6 +47,10 @@ ISP or one hub doesn't take down the overlay.
 | `hub.j2` | Jinja2 template for hub routers |
 | `spoke.j2` | Jinja2 template for spoke routers (includes zone-based firewall) |
 | `information.yaml` | Inventory: global vars + per-device roles, interfaces, tunnels |
+
+## Tech stack
+
+Python 3 · Netmiko · Jinja2 · PyYAML · Cisco IOS · EVE-NG
 
 ## Prerequisites
 
@@ -123,6 +131,29 @@ python automation.py
 4. Waits 40s for DMVPN/OSPF convergence
 5. Reconnects to every device and prints a health report (IKEv2, IPsec,
    NHRP, OSPF)
+
+## Design decisions
+
+**Hub database is built before any spoke is touched.** `automation.py`
+does a full pass over the inventory to collect every hub's
+`{tunnel_ip, nbma_ip, nhrp_id}` before rendering or pushing a single spoke
+config. Spoke templates need each hub's tunnel IP and real (NBMA) IP to
+write `ip nhrp nhs ... nbma ...` statements — that data only exists once
+every hub tunnel has been indexed, so hub discovery has to happen first,
+structurally, not just chronologically.
+
+**Every spoke gets the full hub list; the template filters by
+NHRP network-id.** Instead of pre-filtering the hub database per spoke in
+Python, the raw list is handed to every spoke template, and `spoke.j2`
+picks the right hub(s) itself with `{% if h.nhrp_id == tun.nhrp_network_id %}`.
+Keeps the Python side dumb and puts DMVPN-specific matching logic in one
+place — the template — instead of splitting it across script and template.
+
+**Two independent DMVPN clouds instead of one dual-homed cloud.**
+Tunnel 100 and Tunnel 200 are separate NHRP domains, each with its own
+network-id and its own IPsec/OSPF state, rather than a single cloud with
+two NHS entries per hub. A problem in one cloud (bad crypto negotiation,
+one ISP down) doesn't affect the other cloud's state machine.
 
 ## Known limitations
 
