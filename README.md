@@ -26,7 +26,7 @@ ISP or one hub doesn't take down the overlay.
 
 ## EVE-NG lab
 
-![EVE-NG lab topology](eve-ng-lab.png)
+![EVE-NG lab topology](img/eve-ng-lab.png)
 
 ## Features
 
